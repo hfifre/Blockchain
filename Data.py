@@ -7,6 +7,4 @@ class Direction(Enum):
     tourner_a_gauche = 3
     tourner_a_droite = 4
 
-class Donnee:
-    def __init__(self, direction):
-        self.direction = direction
+      
