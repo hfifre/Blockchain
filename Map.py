@@ -4,37 +4,27 @@ class Map:
     self.length = length
     self.height = height
     self.board = [[]]
-    for i in range(1, height+1):
+    for i in range(0, height):
       line = []
       for j in range(0, length):
-        line.append({"x" : j, "y" : i, "has_car" : False})
+        line.append([])
       self.board.append(line)
-    self.board[1][1]["has_car"] = True
   
-  def display_map(self):
-    for i in range(1, self.height):
+  def display_map(self, car, blockchain):
+    for i in range(0, self.height):
       print("|", end="")
-      for j in range(1, self.length):
-        if(self.board[i][j]["has_car"]):
-          print(f"[X]", end="")
-        else:
-          print(f"[ ]", end="")
+      for j in range(0, self.length):
+        is_displayed = False
+        if i == car.coords[1] and j == car.coords[0]:
+          print("[X]", end="")
+          is_displayed = True
+        else :
+            for b in range(0, len(blockchain.chain)):
+              if blockchain.chain[b].coords[0] == j and blockchain.chain[b].coords[1] == i:
+                print("[*]", end="")
+                is_displayed = True
+                break;
+        if is_displayed == False:
+          print("[ ]", end="")
       print("|")
-  
-  def search_car(self):
-    for i in range(1, self.height):
-      for j in range(1, self.length):
-        if self.board[i][j]["has_car"]:
-          return self.board[i][j]
-  
-  def move_car(self, x_value, y_value):
-    car = self.search_car()
-    
-    if car["x"] + x_value >= self.length or car["x"] + x_value <= 0 \
-    or car["y"] + y_value >= self.height or car["y"] + y_value <= 0:
-      print("can't go out of the map")
-      return
-    
-    self.board[car["y"]][car["x"]]["has_car"] = False
-    self.board[car["y"]+y_value][car["x"]+x_value]["has_car"] = True
 

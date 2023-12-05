@@ -1,7 +1,17 @@
 from Blockchain import Blockchain
-from Data import *
+from Map import Map
+import datetime
+from enum import Enum
 
+class Direction(Enum):
+    continuer_tout_droit = 1
+    faites_demi_tour = 2
+    tourner_a_gauche = 3
+    tourner_a_droite = 4
+    
 blockchain = Blockchain()
+
+new_york_city = Map(20, 20)
 
 game_direction = True
     
@@ -27,10 +37,10 @@ while game_direction:
         
     time_changement = datetime.datetime.utcnow().strftime('%Y-%m-%d %Hh:%Mm:%Ss')
 
-    #coordonnee = coordonnee + deplacement
-
     data = data_direction + ' - ' + time_changement
 
-    blockchain.create_block_in_chain(data, deplacement, 10, 10)
+    blockchain.create_block_in_chain(data, deplacement, new_york_city.length, new_york_city.height)
 
     blockchain.display_blockchain()
+    
+    new_york_city.display_map(blockchain.last_block, blockchain)
