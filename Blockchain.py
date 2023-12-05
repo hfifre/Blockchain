@@ -11,7 +11,7 @@ class Blockchain:
   
   def create_block_in_chain(self, data):
     previous_block_hash = self.last_block.block_hash
-    self.chain.append(Block("test",previous_block_hash))
+    self.chain.append(Block(data,previous_block_hash))
   
   def display_blockchain(self):
     for i in range(len(self.chain)):
