@@ -19,11 +19,11 @@ class Map:
           print("[X]", end="")
           is_displayed = True
         else :
-            for b in range(0, len(blockchain.chain)):
-              if blockchain.chain[b].coords[0] == j and blockchain.chain[b].coords[1] == i:
-                print("[*]", end="")
-                is_displayed = True
-                break;
+          for b in range(0, len(blockchain.chain)):
+            if blockchain.chain[b].coords[0] == j and blockchain.chain[b].coords[1] == i:
+              print("[*]", end="")
+              is_displayed = True
+              break
         if is_displayed == False:
           print("[ ]", end="")
       print("|")
